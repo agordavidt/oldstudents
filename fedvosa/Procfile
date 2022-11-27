@@ -1,1 +1,0 @@
-web gunicorn fedvosa.wsgi:application --log-file -
