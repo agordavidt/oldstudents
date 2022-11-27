@@ -1,0 +1,153 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Settings </title>
+
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+    
+
+</head>
+<body class="bg-light">
+   <!---Navbar-->
+   <input type="checkbox" id="check">
+   <nav class="nav_i">
+       <div class="icon" style="width: 40px; height: 40px"><img src="{% static 'images/logo-2.png' %}" alt=""></div>
+       <div class="search_box">
+           <input type="search" placeholder="search member">
+           <span class="fa fa-search"></span>
+       </div>
+       <ol>
+           <li><a href="/">Home</a></li>
+           <li><a href="/about">About</a></li>            
+           <li><a href="/faq">FAQs</a></li>
+           <li><a href="/contact">Contact</a></li>
+           <div class="btn_2 li_main"><img src="{{user_profile.profileimg.url}}">
+               <div class="menu">
+                   <ul>
+                       <li><a href="/settings">Settings</a></li>
+                       <li><a href="logout"> Logout</a></li>
+                   </ul>
+               </div>
+           
+           
+           </div>
+       </ol>
+       <label for="check" class="bar">
+           <span class="fa fa-bars" id="bars"></span>
+           <span class="fa fa-times" id="times"></span>
+       </label>
+   </nav>
+
+  
+
+
+    <section class="settings">
+        <h2> Account Settings for <b> {{user_profile.user.username}}</b></h2><hr><br>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input_field">
+                <label for="">First Name</label>
+                <input type="text" class="input" name="firstname" value="{{user_profile.firstname}}">
+            </div>
+            <div class="input_field">
+                <label for="">Last Name</label>
+                <input type="text" class="input" name="lastname" value="{{user_profile.lastname}}">
+            </div>
+            <div class="input_field">
+                <label for=""> Profile Image</label>
+                <div>
+                    <img style = "width: 100px; height: 100px; " src="{{user_profile.profileimg.url}}" />
+                    <input type="file" name="image" >
+                </div>
+                
+            </div>
+            <div class="input_field">
+                <label for="gender">Gender</label>                
+                    <input type="radio" name="gender" value="male">Male
+                    <input type="radio" name="gender" value="female">Female                                
+            </div>
+            <div class="input_field">
+                <label for="">Graduation Set</label>
+                <div class="custom_select">
+                    <select name="gradset" id="gradset">
+                        <option value="SET 2021">SET 2021</option>
+                        <option value="SET 2020">SET 2020</option>
+                        <option value="SET 2019">SET 2019</option>
+                        <option value="SET 2018">SET 2018</option>
+                        <option value="SET 2017">SET 2017</option>
+                        <option value="SET 2016">SET 2016</option>
+                        <option value="SET 2015">SET 2015</option>
+                        <option value="SET 2014">SET 2014</option>
+                        <option value="SET 2013">SET 2013</option>
+                        <option value="SET 2012">SET 2012</option>
+                        <option value="SET 2011">SET 2011</option>
+                        <option value="SET 2010">SET 2010</option>
+                        <option value="SET 2009">SET 2009</option>
+                        <option value="SET 2008">SET 2008</option>
+                        <option value="SET 2007">SET 2007</option>
+                        <option value="SET 2006">SET 2006</option>
+                        <option value="SET 2005">SET 2005</option>
+                        <option value="SET 2004">SET 2004</option>
+                        <option value="SET 2003">SET 2003</option>
+                        <option value="SET 2002">SET 2002</option>
+                        <option value="SET 2001">SET 2001</option>
+                        <option value="SET 2000">SET 2000</option>                        
+                    </select>
+                </div>                
+            </div>
+            <div class="input_field">
+                <label for="">School House</label>
+                <div class="custom_select">
+                    <select name="house" id="house">
+                        <option value="Mande House">Mande House</option>
+                        <option value="Kuma House">Kuma House</option>
+                        <option value="Abugh House">Abugh House</option>
+                        <option value="Pine House">Pine House</option>                        
+                    </select>
+                </div>                
+            </div>
+            <div class="input_field">
+                <label for="">About Me</label>
+                <textarea name="bio" id="about" class="textarea">{{user_profile.bio}}</textarea>
+            </div>
+            <div class="input_field">
+                <label for="">Occupation</label>
+                <input type="text" class="input" name="occupation" value="{{user_profile.occupation}}">
+            </div>
+            <div class="input_field">
+                <label for="phone">Phone Number</label>
+                <input type="text" name="phone" placeholder="080-0000-0000" value="{{user_profile.phone}}">
+            </div>
+            <div class="input_field">
+                <label for="">Marital Status</label>
+                <div class="custom_select">
+                    <select name="relationship" id="relationship" >
+                        <option name="single" value="single">Single</option>
+                        <option name="married" value="married">Married</option>                                
+                    </select>
+                </div>               
+            </div>
+            <div class="input_field">
+                <label for="">Location</label>
+                <input type="text" class="input" name="location" value="{{user_profile.location}}">
+            </div>
+            <div class="btn_group">
+                <button class="btn4 btn-4"> <a href="/">Cancel</a> </button>
+                <button type="submit" class="btn4"> Save </button>
+            </div>
+
+        </form>
+    </section>
+   
+</body>
+</html>

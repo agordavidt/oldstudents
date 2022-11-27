@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Signin - FEDVOSA </title>
+
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+    
+
+</head>
+<body>
+    <!---Navbar-->
+    <nav class="navbar">
+        <div class="container flex">
+            <div class="logo" style="width: 40px; height: 40px"><img src="{% static 'images/logo.png' %}" alt=""></div>
+        <ul class="nav-itmes">
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Event</a></li>
+            <li><a href="/faq">FAQs</a></li>
+        </ul>
+        </div>        
+    </nav>
+
+    <!--Signforms-->
+    <section class="sign">
+        <div class="container grid">
+            <div class="sign-text">
+                <h1>FGC Vandeikya Old Students Associaton</h1>
+                <p>A group of ex-students of Federal Government College Vandeikya. Where members promote social interaction
+                     among ourselves and contribute to the moral, welfare and academic development of our Alma-mata</p>
+                <a href="/signup" class="btn btn-outline">signup</a>
+            </div>
+            <div class="sign-form card">
+                <h2>Login</h2>
+                <div>
+                    <style>
+                        h5{
+                            color: red;
+                        }
+                    </style>
+                    {% for message in messages %}
+                    <h5>{{message}}</h5>
+                    {% endfor %}
+                </div>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-control">
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-control">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" value="Send" class="btn btn-primary">Login </button>
+                    <p class="text-base"> Not registered? <a href="/signup" class=""> Create an account </a></p>
+
+                </form>
+                
+            </div>            
+        </div>
+    </section>
+    
+    
+</body>
+</html>
